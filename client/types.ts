@@ -1,11 +1,11 @@
 export type Call = {
   id: number;
-  create_at: Date;
+  created_at: string;
   direction: "inbound" | "outbound";
-  from: number;
-  to: number;
-  via: number;
-  duration: number;
+  from: string;
+  to: string;
+  via: string;
+  duration: string;
   is_archived: boolean;
   call_type: "missed" | "answered" | "voicemail";
 };
