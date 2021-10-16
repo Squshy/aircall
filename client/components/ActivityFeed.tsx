@@ -11,10 +11,10 @@ interface ActivityFeedProps {
 
 export const ActivityFeed: React.FC<ActivityFeedProps> = ({ calls }) => {
   const timeSet = new Set<string>();
-  if (calls === null) return <div>No calls to display.</div>;
+  
   return (
     <div className="flex flex-col space-y-4">
-      {calls.map((call) => {
+      {calls?.map((call) => {
         if (call.is_archived) return;
         const dateString = dateToMonthDayYear(call.created_at);
         if (!timeSet.has(dateString)) {
