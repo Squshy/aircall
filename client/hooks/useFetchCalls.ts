@@ -1,15 +1,16 @@
 import { useEffect, useState } from "react";
 import { Call } from "../types";
 
-export const useFetchCalls = (link:string) => {
-  const [state, setState] = useState<{data: Call[] | null, loading: boolean}>({ data: null, loading: true });
+export const useFetchCalls = (link: string) => {
+  const [loading, setLoading] = useState(false);
+  const [calls, setCalls] = useState<Call[] | null>(null);
   useEffect(() => {
-    setState((state) => ({ data: state.data, loading: true }));
+    setLoading(false);
     fetch(link)
-    .then((res) => res.json())
-    .then((ret) => {
-      setState({data: ret, loading: false})
-    });
-  }, [setState, link]);
-  return {calls :state.data, callsLoading: state.loading}
+      .then((res) => res.json())
+      .then((ret) => {
+        setCalls(ret);
+      });
+  }, [setLoading, setCalls, link]);
+  return { calls: calls, setCalls: setCalls, loading: loading };
 };
