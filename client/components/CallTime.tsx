@@ -7,12 +7,14 @@ interface CallTimeProps {
 }
 
 export const CallTime: React.FC<CallTimeProps> = ({ time }) => {
-  const date = dateToAMPM(time)
-  console.log(date)
+  const { time: callTime, AMPM } = dateToAMPM(time);
   return (
-    <div>
-      <DotsVerticalIcon className="w-3 h-4" />
-      {time}
+    <div className="flex justify-between items-center space-x-1">
+      <DotsVerticalIcon className="w-4 h-4 text-gray-400" />
+      <p className="text-gray-400 font-medium text-sm">{callTime}</p>
+      <div className="border-b border-t border-l rounded-tl-md rounded-bl-md border-gray-300 py-1 px-2">
+      <p className="text-xs text-gray-400 font-bold">{AMPM}</p>
+      </div>
     </div>
   );
 };
