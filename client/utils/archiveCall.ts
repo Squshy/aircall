@@ -3,7 +3,7 @@ import { Call } from "../types";
 
 export const archiveCall = (call: Call) => {
   const { id, is_archived } = call;
-  if(is_archived === true) return;
+  if (is_archived === true) return;
   fetch(CALL_ROUTE + `${id}`, {
     method: "POST",
     headers: {
@@ -12,9 +12,5 @@ export const archiveCall = (call: Call) => {
     body: JSON.stringify({
       is_archived: true,
     }),
-  })
-    .then((res) => res.json())
-    .then((data) => {
-      console.log(data);
-    });
+  }).then((res) => res.json());
 };

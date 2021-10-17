@@ -1,6 +1,7 @@
 import { Dialog, Transition } from "@headlessui/react";
 import React, { Fragment } from "react";
-import { Call as CallType } from "../types";
+import { useCallUpdate } from "../contexts/CallsContext";
+import { Call, Call as CallType } from "../types";
 import { dateToMonthDayYear } from "../utils/dateToMonthDayYear";
 import { secondsToTimeString } from "../utils/secondsToTimeString";
 import { unarchiveCall } from "../utils/unarchiveCall";
@@ -16,9 +17,13 @@ export const CallModal: React.FC<CallModalProps> = ({
   closeModal,
   call,
 }) => {
-  
+  const updateCall = useCallUpdate();
+
   const unarchive = () => {
+    const _call: Call = JSON.parse(JSON.stringify(call));
+    _call.is_archived = false;
     unarchiveCall(call);
+    updateCall(_call);
     closeModal();
   };
 
