@@ -1,26 +1,25 @@
 import React, { HTMLProps, useState } from "react";
-import { CALL_ROUTE } from "../contants";
-import { useFetchCalls } from "../hooks/useFetchCalls";
-import { archiveCall } from "../utils/archiveCall";
+import { Call } from "../types";
 import { ActivityFeed } from "./ActivityFeed";
 import { ArchiveCallsButton } from "./ArchiveCallsButton";
 import { BasicModal } from "./BasicModal";
 
-type InboxProps = HTMLProps<HTMLDivElement> & {};
+type InboxProps = HTMLProps<HTMLDivElement> & {
+  archiveCalls: () => void;
+  loading: boolean;
+  calls: Call[] | null;
+};
 
-export const Inbox: React.FC<InboxProps> = ({ ...props }) => {
-  const { calls, setCalls, loading: callsLoading } = useFetchCalls(CALL_ROUTE);
+export const Inbox: React.FC<InboxProps> = ({
+  archiveCalls,
+  calls,
+  loading,
+  ...props
+}) => {
   const [isOpen, setIsOpen] = useState(false);
 
-  const archiveCalls = () => {
-    if (calls !== null && calls.length > 0) {
-      const tmp_calls = [...calls];
-      tmp_calls.forEach((call) => {
-        archiveCall(call);
-        call.is_archived = true;
-      });
-      setCalls(tmp_calls);
-    }
+  const archive = () => {
+    archiveCalls();
     setIsOpen(true);
   };
 
@@ -33,8 +32,8 @@ export const Inbox: React.FC<InboxProps> = ({ ...props }) => {
         text="Your calls have been archived."
         title="Success"
       />
-      <ArchiveCallsButton onClick={archiveCalls} />
-      {callsLoading ? <p>loading..</p> : <ActivityFeed calls={calls} />}
+      <ArchiveCallsButton onClick={archive} />
+      {loading ? <p>loading..</p> : <ActivityFeed calls={calls} />}
     </div>
   );
 };

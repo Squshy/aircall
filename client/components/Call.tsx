@@ -1,6 +1,6 @@
 import React from "react";
 import { Call as CallType } from "../types";
-import { PhoneIncomingIcon } from "@heroicons/react/solid";
+import { ArchiveIcon, PhoneIncomingIcon } from "@heroicons/react/solid";
 import { CallTime } from "./CallTime";
 
 interface CallProps {
@@ -17,7 +17,10 @@ export const Call: React.FC<CallProps> = ({ call }) => {
           <p className="text-sm text-gray-400">tried to call on {call.via}</p>
         </div>
       </div>
-      <CallTime time={call.created_at} />
+      <div className="flex items-center">
+        {call.is_archived && <ArchiveIcon className="text-red-500 w-4 h-4" />}
+        <CallTime time={call.created_at} />
+      </div>
     </div>
   );
 };
