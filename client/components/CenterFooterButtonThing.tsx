@@ -13,7 +13,7 @@ export const CenterFooterButtonThing: React.FC<CenterFooterButtonThingProps> =
     };
     return (
       <div className="absolute bg-white border border-gray-300 shadow-sm rounded-full h-20 w-20 top-1/4 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-10 p-2">
-        <div className="h-full w-full rounded-full bg-green-500 py-4 px-3">
+        <div className="h-full w-full rounded-full bg-green-999 py-4 px-3">
           <div className="flex flex-wrap -m-0.5 items-center justify-center">{whiteDots()}</div>
         </div>
       </div>
