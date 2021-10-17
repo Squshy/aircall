@@ -25,7 +25,9 @@ export const Call: React.FC<CallProps> = ({ call, onClick }) => {
           <PhoneOutgoingIcon className="w-4 h-4 text-gray-400" />
         )}
         <div>
-          <p className="font-bold text-gray-600">{call.from}</p>
+          <p className="font-bold text-gray-600">
+            {call.direction === "inbound" ? call.from : call.to}
+          </p>
           <p className="text-sm text-gray-400">tried to call on {call.via}</p>
         </div>
       </div>

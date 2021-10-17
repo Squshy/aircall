@@ -68,7 +68,7 @@ export const CallModal: React.FC<CallModalProps> = ({
                 as="h3"
                 className="text-lg font-medium leading-6 text-black"
               >
-                {call.from}
+                {call.direction === "inbound" ? call.from : call.to}
               </Dialog.Title>
               <div className="mt-2">
                 <p className="text-xs italic text-black">
@@ -76,6 +76,12 @@ export const CallModal: React.FC<CallModalProps> = ({
                 </p>
                 <p className="text-sm text-black">
                   {secondsToTimeString(call.duration)}
+                </p>
+                <p className="text-sm text-black font-bold">
+                  Via {call.via}
+                </p>
+                <p className="text-sm text-green-700 mt-2 font-bold">
+                  {call.call_type}
                 </p>
               </div>
 
