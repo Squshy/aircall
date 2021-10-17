@@ -4,12 +4,17 @@ import { ActivityFeed } from "../components/ActivityFeed";
 import { Footer } from "../components/Footer";
 import { Header } from "../components/Header";
 import { Inbox } from "../components/Inbox";
-import { CALL_ROUTE } from "../contants";
-import { useFetchCalls } from "../hooks/useFetchCalls";
+import {
+  useCalls,
+  useCallsLoading,
+  useCallsUpdate,
+} from "../contexts/CallsContext";
 import { archiveCall } from "../utils/archiveCall";
 
 const Home: NextPage = () => {
-  const { calls, setCalls, loading: callsLoading } = useFetchCalls(CALL_ROUTE);
+  const calls = useCalls();
+  const callsLoading = useCallsLoading();
+  const setCalls = useCallsUpdate();
   const [currentPage, setCurrentPage] = useState<"inbox" | "all">("inbox");
 
   const archiveCalls = () => {

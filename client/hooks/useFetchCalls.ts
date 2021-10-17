@@ -3,7 +3,7 @@ import { Call } from "../types";
 
 export const useFetchCalls = (link: string) => {
   const [loading, setLoading] = useState(false);
-  const [calls, setCalls] = useState<Call[] | null>(null);
+  const [calls, setCalls] = useState<Call[]>([]);
   useEffect(() => {
     setLoading(false);
     fetch(link)

@@ -1,18 +1,27 @@
 import { Dialog, Transition } from "@headlessui/react";
 import React, { Fragment } from "react";
 import { Call as CallType } from "../types";
+import { dateToMonthDayYear } from "../utils/dateToMonthDayYear";
+import { secondsToTimeString } from "../utils/secondsToTimeString";
+import { unarchiveCall } from "../utils/unarchiveCall";
 
 interface CallModalProps {
   isOpen: boolean;
   closeModal: () => void;
-  call: CallType
+  call: CallType;
 }
 
 export const CallModal: React.FC<CallModalProps> = ({
   isOpen,
   closeModal,
-  call
+  call,
 }) => {
+  
+  const unarchive = () => {
+    unarchiveCall(call);
+    closeModal();
+  };
+
   return (
     <Transition appear show={isOpen} as={Fragment}>
       <Dialog
@@ -57,17 +66,31 @@ export const CallModal: React.FC<CallModalProps> = ({
                 {call.from}
               </Dialog.Title>
               <div className="mt-2">
-                <p className="text-sm text-black"></p>
+                <p className="text-xs italic text-black">
+                  {dateToMonthDayYear(call.created_at)}
+                </p>
+                <p className="text-sm text-black">
+                  {secondsToTimeString(call.duration)}
+                </p>
               </div>
 
               <div className="mt-4">
                 <button
                   type="button"
-                  className="inline-flex justify-center px-4 py-2 text-sm font-medium text-green-900 bg-green-100 border border-transparent rounded-md hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-blue-500"
+                  className="inline-flex justify-center px-4 py-2 text-sm font-medium text-green-900 bg-green-100 border border-transparent rounded-md hover:bg-green-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-green-500"
                   onClick={closeModal}
                 >
                   Close
                 </button>
+                {call.is_archived && (
+                  <button
+                    type="button"
+                    className="ml-4 inline-flex justify-center px-4 py-2 text-sm font-medium text-red-900 bg-red-100 border border-transparent rounded-md hover:bg-red-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-red-500"
+                    onClick={unarchive}
+                  >
+                    Unarchive
+                  </button>
+                )}
               </div>
             </div>
           </Transition.Child>
