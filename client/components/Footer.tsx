@@ -5,6 +5,7 @@ import {
   UserIcon,
 } from "@heroicons/react/outline";
 import React from "react";
+import { resetCalls } from "../utils/resetCalls";
 import { CenterFooterButtonThing } from "./CenterFooterButtonThing";
 
 interface FooterProps {}
@@ -24,7 +25,9 @@ export const Footer: React.FC<FooterProps> = ({}) => {
 
           <div className="flex w-1/3 justify-end p-4 justify-between">
             <CogIcon className={COMMON_ICON_STYLES} />
-            <TruckIcon className={COMMON_ICON_STYLES} />
+            <button onClick={resetCalls}>
+              <TruckIcon className={COMMON_ICON_STYLES} />
+            </button>
           </div>
         </div>
       </div>
