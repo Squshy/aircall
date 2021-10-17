@@ -4,7 +4,7 @@ import { useFetchCalls } from "../hooks/useFetchCalls";
 import { archiveCall } from "../utils/archiveCall";
 import { ActivityFeed } from "./ActivityFeed";
 import { ArchiveCallsButton } from "./ArchiveCallsButton";
-import { Modal } from "./Modal";
+import { BasicModal } from "./BasicModal";
 
 type InboxProps = HTMLProps<HTMLDivElement> & {};
 
@@ -26,7 +26,7 @@ export const Inbox: React.FC<InboxProps> = ({ ...props }) => {
 
   return (
     <div {...props}>
-      <Modal
+      <BasicModal
         isOpen={isOpen}
         closeModal={() => setIsOpen(false)}
         buttonText={"Close"}

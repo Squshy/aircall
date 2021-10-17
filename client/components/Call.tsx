@@ -9,7 +9,7 @@ interface CallProps {
 
 export const Call: React.FC<CallProps> = ({ call }) => {
   return (
-    <div className="w-full rounded-lg border border-gray-300 py-2 pl-2 flex justify-between">
+    <div className="w-full rounded-lg border border-gray-300 py-2 pl-2 flex justify-between bg-white">
       <div className="flex items-center px-2 space-x-3">
         <PhoneIncomingIcon className="w-4 h-4 text-gray-400" />
         <div>

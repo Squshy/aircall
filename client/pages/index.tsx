@@ -5,7 +5,7 @@ import { Inbox } from "../components/Inbox";
 
 const Home: NextPage = () => {
   return (
-    <div className="flex flex-col justify-between min-h-screen">
+    <div className="flex flex-col justify-between min-h-screen bg-gray-100">
       <Header />
       <Inbox className="mb-auto" />
       <Footer />

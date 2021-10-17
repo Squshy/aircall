@@ -12,7 +12,7 @@ export const ArchiveCallsButton: React.FC<ArchiveCallsButtonProps> = ({
   return (
     <BodyWrapper className="mt-2">
       <button
-        className="w-full rounded-lg p-4 border border-gray-300 flex justify-start items-center"
+        className="w-full rounded-lg p-4 border border-gray-300 flex justify-start items-center bg-white"
         onClick={onClick}
       >
         <ArchiveIcon className="w-6 h-6 text-gray-500" />

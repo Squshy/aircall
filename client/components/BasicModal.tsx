@@ -1,7 +1,7 @@
 import { Dialog, Transition } from "@headlessui/react";
 import React, { Fragment } from "react";
 
-interface ModalProps {
+interface BasicModalProps {
   isOpen: boolean;
   closeModal: () => void;
   title: string;
@@ -9,7 +9,7 @@ interface ModalProps {
   buttonText: string;
 }
 
-export const Modal: React.FC<ModalProps> = ({
+export const BasicModal: React.FC<BasicModalProps> = ({
   isOpen,
   closeModal,
   buttonText,
