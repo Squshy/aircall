@@ -33,7 +33,11 @@ export const Inbox: React.FC<InboxProps> = ({
         title="Success"
       />
       <ArchiveCallsButton onClick={archive} />
-      {loading ? <p>loading..</p> : <ActivityFeed calls={calls} />}
+      {loading ? (
+        <p>loading..</p>
+      ) : (
+        <ActivityFeed calls={calls} showInboundOnly />
+      )}
     </div>
   );
 };
