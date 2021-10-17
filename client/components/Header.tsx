@@ -1,6 +1,6 @@
 import { AdjustmentsIcon, DotsVerticalIcon } from "@heroicons/react/outline";
 import React, { Dispatch, SetStateAction } from "react";
-import { Logo } from "../svg/logo";
+import { Logo } from "../svg/Logo";
 import { HeaderLink } from "./HeaderLink";
 
 interface HeaderProps {
